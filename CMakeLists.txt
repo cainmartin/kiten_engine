@@ -7,6 +7,10 @@ add_library(glad STATIC vendor/glad/src/glad.c)
 set_target_properties(glad PROPERTIES LINKER_LANGUAGE C)
 target_include_directories(glad PUBLIC vendor/glad/include)
 
+add_library(glm INTERFACE)
+target_include_directories(glm INTERFACE vendor/glm)
+target_compile_definitions(glm INTERFACE GLM_ENABLE_EXPERIMENTAL GLM_FORCE_RADIANS)
+
 add_subdirectory(vendor/glfw)
 
 add_executable(${PROJECT_NAME}
@@ -25,6 +29,7 @@ if(APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE
             glad
             glfw
+            glm
             ${COCOA_LIBRARY}
             ${IOKIT_LIBRARY}
             ${CORE_FOUNDATION_LIBRARY}
@@ -35,6 +40,7 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
             glad
             glfw
+            glm
             OpenGL::GL
     )
 endif()
