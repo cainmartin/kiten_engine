@@ -16,6 +16,12 @@ add_subdirectory(vendor/glfw)
 add_executable(${PROJECT_NAME}
         main.cpp
         src/core/ResourceManager.cpp
+        src/platform/Window.cpp
+        src/renderer/gl/GL_Renderer.cpp
+        src/renderer/gl/GL_Shader.cpp
+        src/renderer/Renderer.cpp
+        src/renderer/RendererFactory.cpp
+        src/renderer/Shader.cpp
 )
 
 # Link dependencies

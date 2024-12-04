@@ -5,12 +5,13 @@
 #ifndef KITEN_ENGINE_RENDERER_H
 #define KITEN_ENGINE_RENDERER_H
 
+#include <memory>
 #include "interface/IRenderer.h"
 
 class Renderer : IRenderer
 {
 public:
-    Renderer() = default;
+    Renderer();
     ~Renderer() override = default;
 
     void initialize() override;
@@ -20,6 +21,7 @@ public:
     void shutdown() override;
 
 private:
+    std::unique_ptr<IRenderer> m_renderer;
 };
 
 

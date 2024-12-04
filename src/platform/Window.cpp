@@ -39,6 +39,6 @@ void Window::shutdown()
 
     if (m_window)
     {
-        gflwDestroyWindow(m_window);
+        glfwDestroyWindow(m_window);
     }
 }

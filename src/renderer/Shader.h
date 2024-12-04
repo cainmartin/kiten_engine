@@ -12,8 +12,8 @@ class Shader
 {
 public:
     Shader(const std::string& fs_source, const std::string& vs_source);
-    void bind() { m_impl->bind(); }
-    void unbind() { m_impl->unbind(); }
+    void bind();
+    void unbind();
 
 private:
     class ShaderImpl;

@@ -21,3 +21,13 @@ public:
 private:
     std::unique_ptr<IShader> m_shader;
 };
+
+void Shader::bind()
+{
+    m_impl->bind();
+}
+
+void Shader::unbind()
+{
+    m_impl->unbind();
+}
