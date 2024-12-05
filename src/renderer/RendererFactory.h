@@ -8,6 +8,6 @@
 #include <memory>
 #include "interface/IRenderer.h"
 
-std::unique_ptr<IRenderer> create_renderer();
+std::unique_ptr<IRenderer> create_renderer(GLFWwindow* window);
 
 #endif //KITEN_ENGINE_RENDERERFACTORY_H

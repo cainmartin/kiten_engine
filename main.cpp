@@ -1,11 +1,16 @@
 #include <iostream>
 #include "src/core/FileLoader.h"
+#include "src/platform/Window.h"
+#include "src/Application.h"
 
 int main()
 {
-    std::cout << "Kiten engine/n";
-    ResourceManager::initialize("/Users/cmartin/Development/cpp/kiten_engine/");
-    std::string vs_source = KITEN::load_text("assets/shaders/GL/vs_basic.glsl");
+    // ResourceManager::initialize("/Users/cmartin/Development/cpp/kiten_engine/");
+    ResourceManager::initialize("c:/dev/cpp/kiten_engine/");
+    Application app;
+
+    app.initialize();
+    app.run();
 
     return 0;
 }

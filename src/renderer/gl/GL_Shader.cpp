@@ -4,6 +4,7 @@
 
 #include "GL_Shader.h"
 #include <vector>
+#include <stdexcept>
 
 GL_Shader::GL_Shader(const std::string& vs_source, const std::string& fs_source)
 : m_program_id(0)

@@ -14,8 +14,10 @@ public:
     Window();
     ~Window();
 
-    void initialize();
+    bool should_close() const;
     void shutdown();
+
+    GLFWwindow* get_native_window() const;
 
 private:
     GLFWwindow* m_window;

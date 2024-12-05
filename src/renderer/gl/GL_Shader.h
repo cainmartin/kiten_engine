@@ -9,6 +9,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <string>
+#include <vector>
 
 using get_iv_func  = void(*)(GLuint, GLenum, GLint*);
 using get_info_log_func = void(*)(GLuint, GLsizei, GLsizei*, GLchar*);

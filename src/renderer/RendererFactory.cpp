@@ -5,8 +5,8 @@
 #include "RendererFactory.h"
 #include "gl/GL_Renderer.h"
 
-std::unique_ptr<IRenderer> create_renderer()
+std::unique_ptr<IRenderer> create_renderer(GLFWwindow* window)
 {
     // TODO: Will need to add a selector for different renderers
-    return std::make_unique<GL_Renderer>();
+    return std::make_unique<GL_Renderer>(window);
 }

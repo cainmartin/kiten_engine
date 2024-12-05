@@ -22,6 +22,7 @@ add_executable(${PROJECT_NAME}
         src/renderer/Renderer.cpp
         src/renderer/RendererFactory.cpp
         src/renderer/Shader.cpp
+        src/Application.cpp
 )
 
 # Link dependencies
@@ -41,7 +42,15 @@ if(APPLE)
             ${CORE_FOUNDATION_LIBRARY}
             ${OPENGL_LIBRARY}
     )
+elseif(WIN32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+            glad
+            glfw
+            glm
+            opengl32
+    )
 else()
+
     # Fallback for non-Mac systems
     target_link_libraries(${PROJECT_NAME} PRIVATE
             glad

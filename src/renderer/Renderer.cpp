@@ -5,14 +5,14 @@
 #include "Renderer.h"
 #include "RendererFactory.h"
 
-Renderer::Renderer()
-: m_renderer(create_renderer())
+Renderer::Renderer(GLFWwindow* window)
+: m_renderer(create_renderer(window))
 {
 }
 
-void Renderer::initialize()
+Renderer::~Renderer()
 {
-    m_renderer->initialize();
+    m_renderer->shutdown();
 }
 
 void Renderer::begin_draw()
@@ -28,9 +28,4 @@ void Renderer::draw()
 void Renderer::end_draw()
 {
     m_renderer->end_draw();
-}
-
-void Renderer::shutdown()
-{
-    m_renderer->shutdown();
 }

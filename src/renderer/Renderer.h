@@ -8,17 +8,15 @@
 #include <memory>
 #include "interface/IRenderer.h"
 
-class Renderer : IRenderer
+class Renderer
 {
 public:
-    Renderer();
-    ~Renderer() override = default;
+    explicit Renderer(GLFWwindow* window);
+    ~Renderer();
 
-    void initialize() override;
-    void begin_draw() override;
-    void draw() override;
-    void end_draw() override;
-    void shutdown() override;
+    void begin_draw();
+    void draw();
+    void end_draw();
 
 private:
     std::unique_ptr<IRenderer> m_renderer;
