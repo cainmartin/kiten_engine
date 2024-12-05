@@ -5,7 +5,7 @@
 #include "Window.h"
 #include <stdexcept>
 #include <glad/glad.h>
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 Window::Window()
 : m_window(nullptr)
@@ -18,6 +18,10 @@ Window::Window()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
 
     m_window = glfwCreateWindow(800, 600, "Donkey Fartbox", nullptr, nullptr);
     if (!m_window)

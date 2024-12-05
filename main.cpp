@@ -5,12 +5,19 @@
 
 int main()
 {
-    // ResourceManager::initialize("/Users/cmartin/Development/cpp/kiten_engine/");
-    ResourceManager::initialize("c:/dev/cpp/kiten_engine/");
-    Application app;
+    ResourceManager::initialize("/Users/cmartin/Development/cpp/kiten_engine/");
+    // ResourceManager::initialize("c:/dev/cpp/kiten_engine/");
 
-    app.initialize();
-    app.run();
+    try
+    {
+        Application app;
+        app.initialize();
+        app.run();
+    }
+    catch (std::exception& ex)
+    {
+        std::cout << ex.what() << std::endl;
+    }
 
     return 0;
 }

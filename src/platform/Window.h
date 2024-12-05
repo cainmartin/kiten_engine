@@ -6,7 +6,7 @@
 #define KITEN_ENGINE_WINDOW_H
 
 #include <glad/glad.h>
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 class Window
 {
