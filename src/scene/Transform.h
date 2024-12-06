@@ -5,8 +5,8 @@
 #ifndef KITEN_ENGINE_TRANSFORM_H
 #define KITEN_ENGINE_TRANSFORM_H
 
-#include <glm/glm.hpp>
-#include <glm/gtc/quaternion.hpp>
+#include "glm/glm.hpp"
+#include "glm/gtc/quaternion.hpp"
 
 class Transform
 {

@@ -16,7 +16,7 @@ add_subdirectory(vendor/glfw)
 add_executable(${PROJECT_NAME}
         main.cpp
         src/core/ResourceManager.cpp
-        src/core/Transform.cpp
+        src/scene/Transform.cpp
         src/platform/Window.cpp
         src/renderer/Renderer.cpp
         src/renderer/Shader.cpp
