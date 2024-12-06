@@ -3,7 +3,6 @@
 //
 
 #include "Application.h"
-#include "renderer/RendererFactory.h"
 
 Application::~Application()
 {

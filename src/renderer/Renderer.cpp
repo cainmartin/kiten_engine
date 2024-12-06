@@ -3,29 +3,39 @@
 //
 
 #include "Renderer.h"
-#include "RendererFactory.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 Renderer::Renderer(GLFWwindow* window)
-: m_renderer(create_renderer(window))
+        : m_window(window)
 {
+
 }
 
 Renderer::~Renderer()
 {
-    m_renderer->shutdown();
+    m_window = nullptr;
+    glfwTerminate();
 }
 
 void Renderer::begin_draw()
 {
-    m_renderer->begin_draw();
+    glClearColor(0.2, 0.4, 0.2, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glfwPollEvents();
 }
 
 void Renderer::draw()
 {
-    m_renderer->draw();
 }
 
 void Renderer::end_draw()
 {
-    m_renderer->end_draw();
+    if (!m_window)
+    {
+        return;
+    }
+
+    glfwSwapBuffers(m_window);
 }
+

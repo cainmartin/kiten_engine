@@ -6,7 +6,8 @@
 #define KITEN_ENGINE_RENDERER_H
 
 #include <memory>
-#include "interface/IRenderer.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 class Renderer
 {
@@ -19,7 +20,7 @@ public:
     void end_draw();
 
 private:
-    std::unique_ptr<IRenderer> m_renderer;
+    GLFWwindow* m_window;
 };
 
 
