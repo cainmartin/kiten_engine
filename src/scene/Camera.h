@@ -8,7 +8,9 @@
 
 class Camera
 {
+public:
 
+private:
 };
 
 
