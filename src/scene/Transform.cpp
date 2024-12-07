@@ -8,6 +8,7 @@ Transform::Transform()
 : m_position(glm::vec3(0.0, 0.0, 0.0))
 , m_rotation(glm::quat(1.0, 0.0, 0.0, 0.0))
 , m_scale(glm::vec3(1.0, 1.0, 1.0))
+, m_matrix(glm::mat4(1.0))
 , m_dirty(true)
 {
 

@@ -18,6 +18,7 @@ public:
     {
         // TODO: If we add other renderers - we can use a factory or similar to
         // initialize m_shader
+        initialize(vs_source, fs_source);
     }
 
     ~ShaderImpl();
@@ -42,6 +43,20 @@ Shader::Shader(const std::string& fs_source, const std::string& vs_source)
 
 }
 
+Shader::~Shader()
+{
+
+}
+
+void Shader::bind()
+{
+    m_impl->bind();
+}
+
+void Shader::unbind()
+{
+    m_impl->unbind();
+}
 
 void Shader::ShaderImpl::initialize(const std::string& vs_source, const std::string& fs_source)
 {

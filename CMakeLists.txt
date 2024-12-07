@@ -18,6 +18,7 @@ add_executable(${PROJECT_NAME}
         src/core/ResourceManager.cpp
         src/scene/Transform.cpp
         src/platform/Window.cpp
+        src/renderer/Mesh.cpp
         src/renderer/Renderer.cpp
         src/renderer/Shader.cpp
         src/Application.cpp

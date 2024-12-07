@@ -11,10 +11,12 @@ class Shader
 {
 public:
     Shader(const std::string& fs_source, const std::string& vs_source);
+    ~Shader();
+
     void bind();
     void unbind();
 
-    void set_int(const std::string& name, int value);
+    // void set_int(const std::string& name, int value);
 
 private:
     class ShaderImpl;
