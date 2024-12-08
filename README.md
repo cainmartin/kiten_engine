@@ -40,6 +40,7 @@ Rendering
 - Framebuffers (Offscreen rendering)
 - Post process
   - Bloom / Blur / Tone mapping
+- Full screen support
 
 Audio
 - Probably use OpenAL
