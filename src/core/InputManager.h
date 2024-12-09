@@ -37,10 +37,10 @@ public:
 
     void update();
 
-    bool is_key_pressed(Key key);
-    bool is_key_just_pressed(Key key);
-    bool is_key_just_released(Key key);
-    bool is_mouse_button_down(MouseButton button);
+    bool is_key_pressed(Key key) const;
+    bool is_key_just_pressed(Key key) const;
+    bool is_key_just_released(Key key) const;
+    bool is_mouse_button_down(MouseButton button) const;
     glm::vec2 get_mouse_position() const;
     glm::vec2 get_mouse_delta() const;
 
@@ -53,6 +53,8 @@ private:
     GLFWwindow* m_window;
 
     Key map_glfw_key(GLuint key) const;
+    glm::vec2 m_last_mouse_position;
+    glm::vec2 m_mouse_delta;
 };
 
 

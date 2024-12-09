@@ -5,6 +5,7 @@
 #ifndef KITEN_ENGINE_APPLICATION_H
 #define KITEN_ENGINE_APPLICATION_H
 
+#include "core/InputManager.h"
 #include "platform/Window.h"
 #include "renderer/Renderer.h"
 #include <memory>
@@ -21,6 +22,7 @@ public:
 private:
     std::unique_ptr<Window> m_window;
     std::unique_ptr<Renderer> m_renderer;
+    std::unique_ptr<InputManager> m_input_manager;
 };
 
 

@@ -15,6 +15,8 @@ void Application::initialize()
 {
     m_window = std::make_unique<Window>();
     m_renderer = std::make_unique<Renderer>(m_window->get_native_window());
+    m_input_manager = std::make_unique<InputManager>();
+    m_input_manager->set_glfw_window(m_window->get_native_window());
 }
 
 void Application::run()
@@ -35,6 +37,8 @@ void Application::run()
 
     while (!m_window->should_close())
     {
+        m_input_manager->update();
+
         m_renderer->begin_draw();
 
         shader.bind();

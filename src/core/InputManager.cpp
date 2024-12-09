@@ -21,15 +21,21 @@ void InputManager::update()
             m_current_key_states[key] = glfwGetKey(m_window, glfw_key) == GLFW_PRESS;
         }
     }
+
+    double x, y;
+    glfwGetCursorPos(m_window, &x, &y);
+    glm::vec2 current_mouse_position = { x, y };
+    m_mouse_delta = current_mouse_position - m_last_mouse_position;
+    m_last_mouse_position = current_mouse_position;
 }
 
-bool InputManager::is_key_pressed(Key key)
+bool InputManager::is_key_pressed(Key key) const
 {
     auto it = m_current_key_states.find(key);
     return it != m_current_key_states.end() && it->second;
 }
 
-bool InputManager::is_key_just_pressed(Key key)
+bool InputManager::is_key_just_pressed(Key key) const
 {
     auto current = m_current_key_states.find(key);
     auto previous = m_previous_key_states.find(key);
@@ -38,7 +44,7 @@ bool InputManager::is_key_just_pressed(Key key)
             (previous == m_previous_key_states.end() || !previous->second);
 }
 
-bool InputManager::is_key_just_released(Key key)
+bool InputManager::is_key_just_released(Key key) const
 {
     auto current = m_current_key_states.find(key);
     auto previous = m_previous_key_states.find(key);
@@ -47,23 +53,37 @@ bool InputManager::is_key_just_released(Key key)
             (current != m_current_key_states.end() || !current->second);
 }
 
-bool InputManager::is_mouse_button_down(MouseButton button)
+bool InputManager::is_mouse_button_down(MouseButton button) const
 {
+    int glfwButton;
 
+    switch(button)
+    {
+        case MouseButton::Left: glfwButton = GLFW_MOUSE_BUTTON_LEFT; break;
+        case MouseButton::Right: glfwButton = GLFW_MOUSE_BUTTON_RIGHT; break;
+        case MouseButton::Middle: glfwButton = GLFW_MOUSE_BUTTON_MIDDLE; break;
+        default: return false;
+    }
+
+    return glfwGetMouseButton(m_window, glfwButton) == GLFW_PRESS;
 }
 
 glm::vec2 InputManager::get_mouse_position() const
 {
+    double x, y;
+    glfwGetCursorPos(m_window, &x, &y);
 
+    return {x, y};
 }
 
 glm::vec2 InputManager::get_mouse_delta() const
 {
-
+    return m_mouse_delta;
 }
 
 void InputManager::set_glfw_window(GLFWwindow* window)
 {
+    assert(window && "GLFW window is null!");
     m_window = window;
 }
 
