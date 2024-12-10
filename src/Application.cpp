@@ -6,6 +6,8 @@
 #include "renderer/Mesh.h"
 #include "renderer/Shader.h"
 #include "core/FileLoader.h"
+#include "scene/Camera.h"
+#include "core/Timer.h"
 
 Application::~Application()
 {
@@ -60,20 +62,32 @@ void Application::run()
             6, 7, 3
     };
 
-
     Mesh mesh(vertices, indices);
     Shader shader(KITEN::load_text("assets/shaders/GL/vs_basic.glsl"), KITEN::load_text("assets/shaders/GL/fs_basic.glsl"));
+    Timer timer;
+
+    // Camera::Camera(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far)
+    Camera camera({0.0, 0.0, -5.0}, 0.0, 0.0, 60.0, 800.0/600.0, 0.1, 100.0);
 
     while (!m_window->should_close())
     {
-        m_input_manager->update();
+        float delta_time = timer.get_delta_time();
+
+        camera.process_input(*m_input_manager, delta_time);
+        camera.set_look_at({0.0, 0.0, 0.0});
 
         m_renderer->begin_draw();
 
         shader.bind();
+
+        auto model = glm::mat4(1.0f);
+        model = glm::rotate(model, glm::radians(45.0f * delta_time), glm::vec3(0.0f, 1.0f, 0.0));
+        shader.set_mat("model", model);
+        shader.set_mat("view", camera.get_view_matrix());
+        shader.set_mat("projection", camera.get_projection_matrix());
+
         mesh.draw();
         shader.unbind();
-
 
         m_renderer->end_draw();
     }

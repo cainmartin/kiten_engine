@@ -45,8 +45,8 @@ private:
     std::unordered_map<std::string, GLint> m_uniform_cache;
 };
 
-Shader::Shader(const std::string& fs_source, const std::string& vs_source)
-: m_impl(std::make_unique<ShaderImpl>(fs_source, vs_source))
+Shader::Shader(const std::string& vs_source, const std::string& fs_source)
+: m_impl(std::make_unique<ShaderImpl>(vs_source, fs_source))
 {
 
 }

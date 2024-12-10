@@ -19,6 +19,47 @@ Camera::Camera(const glm::vec3& position, float pitch, float yaw, float fov, flo
     update();
 }
 
+void Camera::process_input(const InputManager& input_manager, float delta_time)
+{
+    const float speed = 5.0f * delta_time;
+    const float sensitivity = 0.1f;
+
+    if (input_manager.is_key_pressed(Key::W))
+    {
+        move_forward(speed);
+    }
+    if (input_manager.is_key_pressed(Key::S))
+    {
+        move_forward(-speed);
+    }
+    if (input_manager.is_key_pressed(Key::A))
+    {
+        move_right(-speed);
+    }
+    if (input_manager.is_key_pressed(Key::D))
+    {
+        move_right(speed);
+    }
+    if (input_manager.is_key_pressed(Key::E))
+    {
+        move_up(speed);
+    }
+    if (input_manager.is_key_pressed(Key::Q))
+    {
+        move_up(-speed);
+    }
+
+    auto mouse_delta = input_manager.get_mouse_delta();
+    m_yaw += mouse_delta.x * sensitivity;
+    m_pitch -= mouse_delta.y * sensitivity;
+
+    if (m_pitch > 89.0f) m_pitch = 89.0f;
+    if (m_pitch < -89.0f) m_pitch = -89.0f;
+
+    update_camera_vectors();
+    update();
+}
+
 void Camera::set_position(const glm::vec3& position)
 {
     m_position = position;

@@ -9,7 +9,7 @@
 Renderer::Renderer(GLFWwindow* window)
         : m_window(window)
 {
-
+    glEnable(GL_DEPTH_TEST);
 }
 
 Renderer::~Renderer()
@@ -21,7 +21,7 @@ Renderer::~Renderer()
 void Renderer::begin_draw()
 {
     glClearColor(0.2, 0.4, 0.2, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glfwPollEvents();
 }
 

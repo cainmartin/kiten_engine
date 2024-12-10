@@ -8,11 +8,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include "../core/InputManager.h"
 
 class Camera
 {
 public:
     Camera(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far);
+
+    void process_input(const InputManager& input_manager, float delta_time);
+
     void set_position(const glm::vec3& position);
     void set_look_at(const glm::vec3& target);
     void move_forward(float delta);

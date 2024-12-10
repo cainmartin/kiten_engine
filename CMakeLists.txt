@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
         main.cpp
         src/core/ResourceManager.cpp
         src/core/InputManager.cpp
+        src/core/Timer.cpp
         src/scene/Camera.cpp
         src/scene/Transform.cpp
         src/platform/Window.cpp
