@@ -5,8 +5,8 @@
 
 int main()
 {
-    // ResourceManager::initialize("/Users/cmartin/Development/cpp/kiten_engine/");
-    ResourceManager::initialize("c:/dev/cpp/kiten_engine/");
+    ResourceManager::initialize("/Users/cmartin/Development/cpp/kiten_engine/");
+    //  ResourceManager::initialize("c:/dev/cpp/kiten_engine/");
 
     try
     {

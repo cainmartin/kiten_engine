@@ -55,6 +55,11 @@ bool Window::should_close() const
     return glfwWindowShouldClose(m_window);
 }
 
+void Window::set_window_should_close()
+{
+    glfwSetWindowShouldClose(m_window, GL_TRUE);
+}
+
 void Window::shutdown()
 {
     glfwTerminate();
