@@ -6,6 +6,7 @@
 #define KITEN_ENGINE_SHADER_H
 
 #include <memory>
+#include <glm/glm.hpp>
 
 class Shader
 {
@@ -16,7 +17,13 @@ public:
     void bind();
     void unbind();
 
-    // void set_int(const std::string& name, int value);
+    void set_int(const std::string& location, int value);
+    void set_float(const std::string& location, float value);
+    void set_vec(const std::string& location, const glm::vec2& value);
+    void set_vec(const std::string& location, const glm::vec3& value);
+    void set_vec(const std::string& location, const glm::vec4& value);
+    void set_mat(const std::string& location, const glm::mat3& value);
+    void set_mat(const std::string& location, const glm::mat4& value);
 
 private:
     class ShaderImpl;

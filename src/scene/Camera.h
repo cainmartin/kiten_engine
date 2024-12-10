@@ -19,8 +19,8 @@ public:
     void move_up(float delta);
     void move_right(float delta);
     void update();
-    glm::mat4 get_view_matrix() const;
-    glm::mat4 get_projection_matrix() const;
+    [[nodiscard]] glm::mat4 get_view_matrix() const;
+    [[nodiscard]] glm::mat4 get_projection_matrix() const;
 
 private:
     glm::vec3 m_position;
