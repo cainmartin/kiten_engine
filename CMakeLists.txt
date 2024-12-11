@@ -19,6 +19,7 @@ add_executable(${PROJECT_NAME}
         src/core/InputManager.cpp
         src/core/Timer.cpp
         src/scene/Camera.cpp
+        src/scene/Entity.cpp
         src/scene/Transform.cpp
         src/platform/Window.cpp
         src/renderer/Mesh.cpp

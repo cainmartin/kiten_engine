@@ -3,14 +3,13 @@
 //
 
 #include "Application.h"
+#include "core/FileLoader.h"
+#include "core/Timer.h"
 #include "renderer/Mesh.h"
 #include "renderer/Shader.h"
-#include "core/FileLoader.h"
 #include "scene/Camera.h"
-#include "core/Timer.h"
-
+#include "scene/Entity.h"
 #include <iostream>
-
 #include <glm/glm.hpp>
 
 Application::~Application()
@@ -67,8 +66,10 @@ void Application::run()
             6, 7, 3
     };
 
-    Mesh mesh(vertices, indices);
-    Shader shader(KITEN::load_text("assets/shaders/GL/vs_basic.glsl"), KITEN::load_text("assets/shaders/GL/fs_basic.glsl"));
+    Mesh cube_mesh(vertices, indices);
+    Entity cube_entity(&cube_mesh);
+    Shader cube_shader(KITEN::load_text("assets/shaders/GL/vs_basic.glsl"), KITEN::load_text("assets/shaders/GL/fs_basic.glsl"));
+
     Timer timer;
 
     // Camera::Camera(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far)
@@ -85,29 +86,32 @@ void Application::run()
         }
 
         float delta_time = timer.get_delta_time();
-        std::cout << delta_time << '\n';
 
         camera.process_input(*m_input_manager, delta_time);
 
+        // Update entity position
+        float rotation_speed = 1.0f * delta_time; // 1 radian per second, just as an example
+        glm::quat current_rotation = cube_entity.get_transform().get_rotation();
+        glm::vec3 axis = glm::vec3(0.0, 1.0, 0.0);
+        glm::quat increment = glm::angleAxis(rotation_speed, axis);
+        cube_entity.set_rotation(increment * current_rotation);
+        cube_entity.set_position({ 0.0, 0.0, 0.0 });
+
         m_renderer->begin_draw();
+        {
+            cube_shader.bind();
 
-        shader.bind();
+            auto model = cube_entity.get_transform().get_matrix();
 
-        float rotation_speed = 1.0f; // 1 radian per second, just as an example
-        rot += rotation_speed * delta_time;
+            cube_shader.set_mat("model", model);
+            cube_shader.set_mat("view", camera.get_view_matrix());
+            cube_shader.set_mat("projection", camera.get_projection_matrix());
 
-        auto model = glm::mat4(1.0f);
-        rot += rotation_speed * delta_time;
-        model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 0.0f, 1.0));
-        shader.set_mat("model", model);
-        shader.set_mat("view", camera.get_view_matrix());
-        shader.set_mat("projection", camera.get_projection_matrix());
+            cube_entity.draw();
 
-        mesh.draw();
-        shader.unbind();
+            cube_shader.unbind();
+        }
 
         m_renderer->end_draw();
-
-
     }
 }
