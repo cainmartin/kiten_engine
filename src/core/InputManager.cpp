@@ -95,6 +95,8 @@ Key InputManager::map_glfw_key(GLuint key) const
         case GLFW_KEY_W: return Key::W;
         case GLFW_KEY_D: return Key::D;
         case GLFW_KEY_S: return Key::S;
+        case GLFW_KEY_E: return Key::E;
+        case GLFW_KEY_Q: return Key::Q;
         case GLFW_KEY_SPACE: return Key::Space;
         case GLFW_KEY_ESCAPE: return Key::Esc;
         default: return Key::Unknown;
