@@ -13,6 +13,22 @@ target_compile_definitions(glm INTERFACE GLM_ENABLE_EXPERIMENTAL GLM_FORCE_RADIA
 
 add_subdirectory(vendor/glfw)
 
+# Dear ImGui Library
+add_library(imgui STATIC
+        vendor/imgui/imgui.cpp
+        vendor/imgui/imgui_draw.cpp
+        vendor/imgui/imgui_widgets.cpp
+        vendor/imgui/imgui_tables.cpp
+        vendor/imgui/backends/imgui_impl_glfw.cpp
+        vendor/imgui/backends/imgui_impl_opengl3.cpp
+        vendor/imgui/imgui_demo.cpp
+)
+
+target_include_directories(imgui PUBLIC vendor/imgui vendor/imgui/backends)
+
+# Link GLFW include directory to imgui
+target_include_directories(imgui PUBLIC vendor/glfw/include)
+
 add_executable(${PROJECT_NAME}
         main.cpp
         src/core/ResourceManager.cpp
@@ -40,6 +56,7 @@ if(APPLE)
             glad
             glfw
             glm
+            imgui
             ${COCOA_LIBRARY}
             ${IOKIT_LIBRARY}
             ${CORE_FOUNDATION_LIBRARY}
@@ -50,6 +67,7 @@ elseif(WIN32)
             glad
             glfw
             glm
+            imgui
             opengl32
     )
 else()
@@ -59,6 +77,7 @@ else()
             glad
             glfw
             glm
+            imgui
             OpenGL::GL
     )
 endif()

@@ -10,10 +10,17 @@
 #include "scene/Camera.h"
 #include "scene/Entity.h"
 #include <iostream>
+#include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 #include <glm/glm.hpp>
 
 Application::~Application()
 {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
     m_window->shutdown();
 }
 
@@ -23,6 +30,18 @@ void Application::initialize()
     m_renderer = std::make_unique<Renderer>(m_window->get_native_window());
     m_input_manager = std::make_unique<InputManager>();
     m_input_manager->set_glfw_window(m_window->get_native_window());
+
+    // Setup Dear ImGui context
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+    // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
+
+// Setup Platform/Renderer backends
+    ImGui_ImplGlfw_InitForOpenGL(m_window->get_native_window(), true);          // Second param install_callback=true will install GLFW callbacks and chain to existing ones.
+    ImGui_ImplOpenGL3_Init();
 }
 
 void Application::run()
@@ -79,7 +98,9 @@ void Application::run()
 
     while (!m_window->should_close())
     {
+        glfwPollEvents();
         m_input_manager->update();
+
         if (m_input_manager->is_key_just_pressed(Key::Esc))
         {
             m_window->set_window_should_close();
@@ -99,6 +120,8 @@ void Application::run()
 
         m_renderer->begin_draw();
         {
+            imgui_start();
+
             cube_shader.bind();
 
             auto model = cube_entity.get_transform().get_matrix();
@@ -110,8 +133,24 @@ void Application::run()
             cube_entity.draw();
 
             cube_shader.unbind();
+
+            imgui_end();
         }
 
         m_renderer->end_draw();
     }
+}
+
+void Application::imgui_start()
+{
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+    // ImGui::ShowDemoWindow();
+}
+
+void Application::imgui_end()
+{
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }

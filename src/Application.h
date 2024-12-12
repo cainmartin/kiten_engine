@@ -20,6 +20,10 @@ public:
     void run();
 
 private:
+
+    void imgui_start();
+    void imgui_end();
+
     std::unique_ptr<Window> m_window;
     std::unique_ptr<Renderer> m_renderer;
     std::unique_ptr<InputManager> m_input_manager;
