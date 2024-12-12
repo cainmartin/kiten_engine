@@ -15,7 +15,6 @@ public:
         : m_mesh(mesh)
     {}
 
-
     Transform& get_transform() { return m_transform; }
     [[nodiscard]] const Transform& get_transform() const { return m_transform; }
 

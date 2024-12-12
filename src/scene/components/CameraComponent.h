@@ -2,18 +2,18 @@
 // Created by Cain Martin on 2024/12/06.
 //
 
-#ifndef KITEN_ENGINE_CAMERA_H
-#define KITEN_ENGINE_CAMERA_H
+#ifndef KITEN_ENGINE_CAMERACOMPONENT_H
+#define KITEN_ENGINE_CAMERACOMPONENT_H
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
-#include "../core/InputManager.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/quaternion.hpp"
+#include "../../core/InputManager.h"
 
-class Camera
+class CameraComponent
 {
 public:
-    Camera(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far);
+    CameraComponent(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far);
 
     void process_input(const InputManager& input_manager, float delta_time);
 
@@ -45,4 +45,4 @@ private:
 };
 
 
-#endif //KITEN_ENGINE_CAMERA_H
+#endif //KITEN_ENGINE_CAMERACOMPONENT_H

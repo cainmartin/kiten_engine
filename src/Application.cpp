@@ -7,7 +7,7 @@
 #include "core/Timer.h"
 #include "renderer/Mesh.h"
 #include "renderer/Shader.h"
-#include "scene/Camera.h"
+#include "scene/components/CameraComponent.h"
 #include "scene/Entity.h"
 #include <iostream>
 #include <imgui.h>
@@ -92,7 +92,7 @@ void Application::run()
     Timer timer;
 
     // Camera::Camera(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far)
-    Camera camera({0.0, 0.0, -5.0}, 0.0, 0.0, 60.0, 800.0/600.0, 0.1, 100.0);
+    CameraComponent camera({0.0, 0.0, -5.0}, 0.0, 0.0, 60.0, 800.0 / 600.0, 0.1, 100.0);
 
     float rot = 0.0f;
 
