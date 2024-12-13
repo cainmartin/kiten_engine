@@ -4,9 +4,9 @@
 
 #include "Mesh.h"
 
-Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<uint32_t>& indices)
-: m_vertices(vertices)
-, m_indices(indices)
+Mesh::Mesh(const MeshData& mesh_data)
+: m_vertices(mesh_data.vertices)
+, m_indices(mesh_data.indices)
 , m_vao(0)
 , m_vbo(0)
 , m_ebo(0)
@@ -16,7 +16,9 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<uint32_t>& ind
 
 Mesh::~Mesh()
 {
-
+    glDeleteBuffers(1, &m_vbo);
+    glDeleteBuffers(1, &m_ebo);
+    glDeleteVertexArrays(1, &m_vao);
 }
 
 void Mesh::draw()

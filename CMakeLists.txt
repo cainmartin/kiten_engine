@@ -37,6 +37,7 @@ add_executable(${PROJECT_NAME}
         src/scene/components/CameraComponent.cpp
         src/scene/Entity.cpp
         src/scene/Transform.cpp
+        src/scene/geometry/CubeGenerator.cpp
         src/platform/Window.cpp
         src/renderer/Mesh.cpp
         src/renderer/Renderer.cpp
