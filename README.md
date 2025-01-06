@@ -8,11 +8,10 @@ An experimental OpenGL engine
 
 Rendering
 
-- Input system
 - Controller / gamepad support
 - Add an event system instead of using polling
-- Add camera
-- Add geometry generators (cubes / spheres / etc)
+- Add camera capture
+- Add geometry generators (spheres / etc)
 - Implement texture loading
 - Add lighting model to the shaders
   - Ambient
@@ -25,7 +24,6 @@ Rendering
 - Hot reloading
 - Add model loading (ASSIMP)
 - Scene graph
-- ImGui integration
 - Make root / base path automated, or use config
 - Logging system
 - Make project into library
@@ -48,3 +46,10 @@ Audio
 Physics
 - Integrate physics (Bullet?)
 
+
+Done
+- ImGUI
+- Basic camera
+- Basic Input system
+- Basic rendering
+- Added a simple cube generator
