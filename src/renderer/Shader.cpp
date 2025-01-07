@@ -53,7 +53,7 @@ Shader::Shader(const std::string& vs_source, const std::string& fs_source)
 
 Shader::~Shader()
 {
-
+    unbind();
 }
 
 void Shader::bind()

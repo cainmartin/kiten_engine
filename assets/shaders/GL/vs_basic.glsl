@@ -8,7 +8,12 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
+out vec3 fragNormal;
+
 void main() {
+    mat3 normalMatrix = mat3(transpose(inverse(model)));
+    fragNormal = normalize(normalMatrix * normal);
+
     // projection * view * model *
     gl_Position = projection * view * model * vec4(position, 1.0);
 }
