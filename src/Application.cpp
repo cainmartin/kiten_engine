@@ -76,7 +76,7 @@ void Application::run()
         // Update entity position
         float rotation_speed = 1.0f * delta_time; // 1 radian per second, just as an example
         glm::quat current_rotation = cube_entity.get_transform().get_rotation();
-        glm::vec3 axis = glm::vec3(0.0, 1.0, 0.0);
+        glm::vec3 axis = glm::vec3(1.0, 1.0, 0.0);
         glm::quat increment = glm::angleAxis(rotation_speed, axis);
         cube_entity.set_rotation(increment * current_rotation);
         cube_entity.set_position({ 0.0, 0.0, 0.0 });

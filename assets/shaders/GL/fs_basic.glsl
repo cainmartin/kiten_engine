@@ -14,6 +14,19 @@ float remap(float v, float inMin, float inMax, float outMin, float outMax) {
 
 void main() {
     vec3 normal = normalize(fragNormal);
+    vec3 baseColor = vec3(0.5);
+    vec3 lighting = vec3(0.0);
+    vec3 ambient = vec3(0.5);
 
-    FragColor = vec4(normal * 0.5 + 0.5, 1.0);
+    // Hemi lighting
+    vec3 skyColor = vec3(0.0, 0.3, 0.6);
+    vec3 groundColor = vec3(0.6, 0.3, 0.1);
+
+    float hemiMix = remap(normal.y, -1.0, 1.0, 0.0, 1.0);
+    vec3 hemi = mix(groundColor, skyColor, hemiMix);
+    lighting = ambient * 0.0 + hemi;
+
+    vec3 color = baseColor * lighting;
+
+    FragColor = vec4(color, 1.0);
 }
