@@ -7,9 +7,9 @@
 
 #include <vector>
 #include <glad/glad.h>
-#include "Vertex.h"
+#include "../resources/Vertex.h"
 #include "../scene/Transform.h"
-#include "MeshData.h"
+#include "../resources/MeshData.h"
 
 class Mesh
 {

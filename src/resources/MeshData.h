@@ -5,7 +5,7 @@
 #ifndef KITEN_ENGINE_MESHDATA_H
 #define KITEN_ENGINE_MESHDATA_H
 
-#include <vector>
+#include <c++/vector>
 #include "Vertex.h"
 
 struct MeshData

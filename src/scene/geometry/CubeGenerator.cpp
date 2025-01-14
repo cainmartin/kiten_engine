@@ -2,7 +2,7 @@
 // Created by Cain Martin on 2024/12/13.
 //
 
-#include "../../renderer/MeshData.h"
+#include "../../resources/MeshData.h"
 #include "CubeGenerator.h"
 
 MeshData CubeGenerator::generate()

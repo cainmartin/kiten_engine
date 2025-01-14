@@ -5,7 +5,7 @@
 #ifndef KITEN_ENGINE_VERTEX_H
 #define KITEN_ENGINE_VERTEX_H
 
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 
 struct Vertex
 {

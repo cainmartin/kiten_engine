@@ -22,7 +22,6 @@ Rendering
 - Add different rendering pipelines (Forward / Deferred)
 - Add shadowmapping
 - Hot reloading
-- Add model loading (ASSIMP)
 - Scene graph
 - Make root / base path automated, or use config
 - Logging system
@@ -39,6 +38,8 @@ Rendering
 - Post process
   - Bloom / Blur / Tone mapping
 - Full screen support
+- Physics generation on model import
+- OBJ and GLTF support (Try this from scratch, but maybe use ASIMP?)
 
 Audio
 - Probably use OpenAL
@@ -46,6 +47,9 @@ Audio
 Physics
 - Integrate physics (Bullet?)
 
+Documentation
+- Clearly layout hiearchy - this is loosely following a layered system
+- i.e. platform independence layer, is below core layer, is below the resources, is below the game specific subsystems
 
 Done
 - ImGUI
