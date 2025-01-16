@@ -19,6 +19,7 @@ public:
     [[nodiscard]] bool should_close() const;
     void set_window_should_close();
     void shutdown();
+    void capture_mouse(bool capture = true);
 
     [[nodiscard]] Size2d get_framebuffer_size() const;
     [[nodiscard]] GLFWwindow* get_native_window() const;

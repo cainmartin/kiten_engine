@@ -6,6 +6,7 @@
 
 InputManager::InputManager()
 : m_window(nullptr)
+, m_is_first_run(true)
 {
 }
 
@@ -25,6 +26,13 @@ void InputManager::update()
     double x, y;
     glfwGetCursorPos(m_window, &x, &y);
     glm::vec2 current_mouse_position = { x, y };
+
+    if (m_is_first_run)
+    {
+        m_last_mouse_position = current_mouse_position;
+        m_is_first_run = false;
+    }
+
     m_mouse_delta = current_mouse_position - m_last_mouse_position;
     m_last_mouse_position = current_mouse_position;
 }

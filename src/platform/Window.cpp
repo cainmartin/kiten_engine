@@ -70,6 +70,12 @@ void Window::shutdown()
     }
 }
 
+void Window::capture_mouse(bool capture)
+{
+    glfwSetInputMode(m_window, GLFW_CURSOR, capture ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+}
+
+
 Size2d Window::get_framebuffer_size() const
 {
     int width, height;

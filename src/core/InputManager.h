@@ -57,6 +57,8 @@ private:
     Key map_glfw_key(GLuint key) const;
     glm::vec2 m_last_mouse_position;
     glm::vec2 m_mouse_delta;
+
+    bool m_is_first_run;
 };
 
 

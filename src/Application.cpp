@@ -59,6 +59,8 @@ void Application::run()
     Size2d size = m_window->get_framebuffer_size();
     float aspect_ratio = static_cast<float>(size.width) / static_cast<float>(size.height);
     CameraComponent camera({0.0, 0.0, -5.0}, 0.0, 0.0, 60.0, aspect_ratio, 0.1, 100.0);
+    camera.set_look_at({0.0, 0.0, 0.0});
+    m_window->capture_mouse();
 
     float rot = 0.0f;
 

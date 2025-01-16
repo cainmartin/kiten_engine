@@ -68,9 +68,12 @@ void CameraComponent::set_position(const glm::vec3& position)
 
 void CameraComponent::set_look_at(const glm::vec3& target)
 {
-    m_forward = glm::normalize(target - m_position);
-    m_right = glm::normalize(glm::cross(m_forward, glm::vec3(0.0, 1.0, 0.0)));
-    m_up = glm::normalize(glm::cross(m_right, m_forward));
+    auto forward = glm::normalize(target - m_position);
+    m_pitch = glm::degrees(std::asin(forward.y));
+    m_yaw = glm::degrees(std::atan2(forward.z, forward.x));
+
+    update_camera_vectors();
+
     update();
 }
 
