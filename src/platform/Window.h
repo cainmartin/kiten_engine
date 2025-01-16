@@ -8,6 +8,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+class Size2d;
+
 class Window
 {
 public:
@@ -18,6 +20,7 @@ public:
     void set_window_should_close();
     void shutdown();
 
+    [[nodiscard]] Size2d get_framebuffer_size() const;
     [[nodiscard]] GLFWwindow* get_native_window() const;
 
 private:

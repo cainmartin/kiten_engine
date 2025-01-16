@@ -19,6 +19,7 @@ public:
 
     void set_position(const glm::vec3& position);
     void set_look_at(const glm::vec3& target);
+    void set_aspect_ratio(float ratio);
     void move_forward(float delta);
     void move_up(float delta);
     void move_right(float delta);

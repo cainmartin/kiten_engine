@@ -74,6 +74,11 @@ void CameraComponent::set_look_at(const glm::vec3& target)
     update();
 }
 
+void CameraComponent::set_aspect_ratio(float ratio)
+{
+    m_ratio = ratio;
+}
+
 void CameraComponent::move_forward(float delta)
 {
     m_position += m_forward * delta;

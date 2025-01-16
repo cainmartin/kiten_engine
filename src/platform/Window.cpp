@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "../math/DataTypes.h"
 
 Window::Window()
 : m_window(nullptr)
@@ -39,10 +40,9 @@ Window::Window()
         throw std::runtime_error("Failed to initialize GLAD");
     }
 
-    // Set OpenGL viewport
-    int width, height;
-    glfwGetFramebufferSize(m_window, &width, &height);
-    glViewport(0, 0, width, height);
+    glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* window, int width, int height) {
+       glViewport(0, 0, width, height);
+    });
 }
 
 Window::~Window()
@@ -68,6 +68,14 @@ void Window::shutdown()
     {
         glfwDestroyWindow(m_window);
     }
+}
+
+Size2d Window::get_framebuffer_size() const
+{
+    int width, height;
+    glfwGetFramebufferSize(m_window, &width, &height);
+
+    return { width, height };
 }
 
 GLFWwindow* Window::get_native_window() const

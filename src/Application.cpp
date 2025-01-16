@@ -5,6 +5,7 @@
 #include "Application.h"
 #include "core/FileLoader.h"
 #include "core/Timer.h"
+#include "math/DataTypes.h"
 #include "renderer/Mesh.h"
 #include "renderer/Shader.h"
 #include "scene/components/CameraComponent.h"
@@ -55,7 +56,9 @@ void Application::run()
     Timer timer;
 
     // Camera::Camera(const glm::vec3& position, float pitch, float yaw, float fov, float aspect, float near, float far)
-    CameraComponent camera({0.0, 0.0, -5.0}, 0.0, 0.0, 60.0, 800.0 / 600.0, 0.1, 100.0);
+    Size2d size = m_window->get_framebuffer_size();
+    float aspect_ratio = static_cast<float>(size.width) / static_cast<float>(size.height);
+    CameraComponent camera({0.0, 0.0, -5.0}, 0.0, 0.0, 60.0, aspect_ratio, 0.1, 100.0);
 
     float rot = 0.0f;
 
@@ -70,13 +73,15 @@ void Application::run()
         }
 
         float delta_time = timer.get_delta_time();
+        size = m_window->get_framebuffer_size();
 
+        camera.set_aspect_ratio(static_cast<float>(size.width) / static_cast<float>(size.height));
         camera.process_input(*m_input_manager, delta_time);
 
         // Update entity position
         float rotation_speed = 1.0f * delta_time; // 1 radian per second, just as an example
         glm::quat current_rotation = cube_entity.get_transform().get_rotation();
-        glm::vec3 axis = glm::vec3(1.0, 1.0, 0.0);
+        glm::vec3 axis = glm::normalize(glm::vec3(1.0, 1.0, 0.0));
         glm::quat increment = glm::angleAxis(rotation_speed, axis);
         cube_entity.set_rotation(increment * current_rotation);
         cube_entity.set_position({ 0.0, 0.0, 0.0 });
